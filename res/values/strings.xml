@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Fake Device Data</string>
+    <string name="app_description">Fake your device data for selected app.</string>
+
+    <!-- App select screen. -->
+    <string name="select_desc">Select apps that want to fake android.os.build</string>
+    <string name="save_prompt_title">Exit this app without save?</string>
+    <string name="save_prompt_message">You haven\'t saved your settings</string>
+    <string name="save_prompt_positive">Don\'t exit</string>
+    <string name="save_prompt_negative">Exit</string>
+    <string name="save_message">Settings saved.</string>
+    <string name="reset_message">Deselected All app.</string>
+    
+    <!-- Fake data settings screen. -->
+    <string name="settings_fake_data">Fake data for android.os.build</string>
+    <string name="settings_fake_saved">Fake data saved!</string>
+    <string name="lbl_fake_board">BOARD</string>
+    <string name="lbl_fake_bootloader">BOOTLOADER</string>
+    <string name="lbl_fake_brand">BRAND</string>
+    <string name="lbl_fake_cpu_abi">CPU_ABI</string>
+    <string name="lbl_fake_cpu_abi2">CPU_ABI2</string>
+    <string name="lbl_fake_device">DEVICE</string>
+    <string name="lbl_fake_display">DISPLAY</string>
+    <string name="lbl_fake_fingerprint">FINGERPRINT</string>
+    <string name="lbl_fake_hardware">HARDWARE</string>
+    <string name="lbl_fake_host">HOST</string>
+    <string name="lbl_fake_id">ID</string>
+    <string name="lbl_fake_manufacturer">MANUFACTURER</string>
+    <string name="lbl_fake_model">MODEL</string>
+    <string name="lbl_fake_product">PRODUCT</string>
+    <string name="lbl_fake_radio">RADIO</string>
+    <string name="lbl_fake_tags">TAGS</string>
+    <string name="lbl_fake_time">TIME</string>
+    <string name="lbl_fake_type">TYPE</string>
+    <string name="lbl_fake_user">USER</string>
+    <string name="lbl_fake_codename">CODENAME</string>
+    <string name="lbl_fake_incremental">INCREMENTAL</string>
+    <string name="lbl_fake_release">RELEASE</string>
+    <string name="lbl_fake_sdk">SDK</string>
+    <string name="lbl_fake_sdk_int">SDK_INT</string>
+ </resources>

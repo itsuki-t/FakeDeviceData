@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText,TooManyViews,Overdraw" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="@string/settings_fake_data"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginBottom="6dp"
+                android:background="#888888" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="?android:attr/listDivider"
+                android:showDividers="middle"
+                android:shrinkColumns="2"
+                android:stretchColumns="2" >
+
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_board" />
+                    <TextView
+                        android:text="@string/lbl_fake_board"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_board"
+                        android:hint="FAKE_BOARD"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_bootloader" />
+                    <TextView
+                        android:text="@string/lbl_fake_bootloader"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_bootloader"
+                        android:hint="FAKE_BOOTLOADER"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_brand" />
+                    <TextView
+                        android:text="@string/lbl_fake_brand"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_brand"
+                        android:hint="FAKE_BRAND"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_cpu_abi" />
+                    <TextView
+                        android:text="@string/lbl_fake_cpu_abi"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_cpu_abi"
+                        android:hint="FAKE_CPU_ABI"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_cpu_abi2" />
+                    <TextView
+                        android:text="@string/lbl_fake_cpu_abi2"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_cpu_abi2"
+                        android:hint="FAKE_CPU_ABI2"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_device" />
+                    <TextView
+                        android:text="@string/lbl_fake_device"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_device"
+                        android:hint="FAKE_DEVICE"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_display" />
+                    <TextView
+                        android:text="@string/lbl_fake_display"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_display"
+                        android:hint="FAKE_DISPLAY"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_fingerprint" />
+                    <TextView
+                        android:text="@string/lbl_fake_fingerprint"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_fingerprint"
+                        android:hint="FAKE_FINGERPRINT"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_hardware" />
+                    <TextView
+                        android:text="@string/lbl_fake_hardware"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_hardware"
+                        android:hint="FAKE_HARDWARE"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_host" />
+                    <TextView
+                        android:text="@string/lbl_fake_host"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_host"
+                        android:hint="FAKE_HOST"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_id" />
+                    <TextView
+                        android:text="@string/lbl_fake_id"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_id"
+                        android:hint="FAKE_ID"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_manufacturer" />
+                    <TextView
+                        android:text="@string/lbl_fake_manufacturer"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_manufacturer"
+                        android:hint="FAKE_MANUFACTURER"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_model" />
+                    <TextView
+                        android:text="@string/lbl_fake_model"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_model"
+                        android:hint="FAKE_MODEL"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_product" />
+                    <TextView
+                        android:text="@string/lbl_fake_product"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_product"
+                        android:hint="FAKE_PRODUCT"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_radio" />
+                    <TextView
+                        android:text="@string/lbl_fake_radio"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_radio"
+                        android:hint="FAKE_RADIO"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_tags" />
+                    <TextView
+                        android:text="@string/lbl_fake_tags"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_tags"
+                        android:hint="FAKE_TAGS"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_time" />
+                    <TextView
+                        android:text="@string/lbl_fake_time"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_time"
+                        android:hint="FAKE_TIME"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_type" />
+                    <TextView
+                        android:text="@string/lbl_fake_type"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_type"
+                        android:hint="FAKE_TYPE"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_user" />
+                    <TextView
+                        android:text="@string/lbl_fake_user"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_user"
+                        android:hint="FAKE_USER"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_codename" />
+                    <TextView
+                        android:text="@string/lbl_fake_codename"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_codename"
+                        android:hint="FAKE_CODENAME"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_incremental" />
+                    <TextView
+                        android:text="@string/lbl_fake_incremental"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_incremental"
+                        android:hint="FAKE_INCREMENTAL"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_release" />
+                    <TextView
+                        android:text="@string/lbl_fake_release"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_release"
+                        android:hint="FAKE_RELEASE"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_sdk" />
+                    <TextView
+                        android:text="@string/lbl_fake_sdk"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_sdk"
+                        android:hint="FAKE_SDK"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+                <TableRow style="@style/PreferenceLine" >
+                    <CheckBox android:id="@+id/cb_fake_sdk_int" />
+                    <TextView
+                        android:text="@string/lbl_fake_sdk_int"
+                        android:textIsSelectable="false" />
+                    <EditText
+                        android:id="@+id/edt_fake_sdk_int"
+                        android:hint="FAKE_SDK_INT"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+<!-- 2 -->
+<!--
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbAlt" />
+
+                    <TextView
+                        android:text="@string/settings_alt"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etAlt"
+                        android:hint="686"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <Button
+                        android:id="@+id/btnSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@android:string/search_go" />
+
+                    <EditText
+                        android:id="@+id/etSearch"
+                        android:hint="Christmas Island"
+                        android:inputType="textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbMac" />
+
+                    <TextView
+                        android:text="@string/settings_mac"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etMac"
+                        android:digits="0123456789ABCDEF:"
+                        android:hint="DE:FA:CE:DE:FA:CE"
+                        android:inputType="textCapCharacters|textNoSuggestions"
+                        android:maxLength="18"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_ip"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etIP"
+                        android:digits="0123456789ABCDEF.:"
+                        android:hint="0.0.0.0"
+                        android:inputType="textCapCharacters|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbImei" />
+
+                    <TextView
+                        android:text="@string/settings_imei"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etImei"
+                        android:digits="0123456789ABCDEF"
+                        android:hint="000000000000000"
+                        android:inputType="textCapCharacters|textNoSuggestions"
+                        android:maxLength="16"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbPhone" />
+
+                    <TextView
+                        android:text="@string/settings_phone"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etPhone"
+                        android:hint="DEFACE"
+                        android:inputType="textNoSuggestions|phone"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbId" />
+
+                    <TextView
+                        android:text="@string/settings_id"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etId"
+                        android:digits="0123456789abcdef"
+                        android:hint="deface"
+                        android:inputType="textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbGsfId" />
+
+                    <TextView
+                        android:text="@string/settings_gsfid"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etGsfId"
+                        android:digits="0123456789ABCDEF"
+                        android:hint="DEFACE"
+                        android:inputType="textCapCharacters|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbAdId" />
+
+                    <TextView
+                        android:text="@string/settings_adid"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etAdId"
+                        android:digits="0123456789ABCDEF-"
+                        android:hint="DEFACE00-0000-0000-0000-000000000000"
+                        android:inputType="textCapCharacters|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_mcc"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etMcc"
+                        android:hint="001"
+                        android:inputType="numberDecimal|textNoSuggestions"
+                        android:maxLength="3"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_mnc"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etMnc"
+                        android:hint="01"
+                        android:inputType="numberDecimal|textNoSuggestions"
+                        android:maxLength="3"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbCountry" />
+
+                    <TextView
+                        android:text="@string/settings_country"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etCountry"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:hint="XX"
+                        android:inputType="textCapCharacters|textNoSuggestions"
+                        android:maxLength="2"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_operator"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etOperator"
+                        android:hint="DEFACED"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_iccid"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etIccId"
+                        android:inputType="numberDecimal|textNoSuggestions"
+                        android:maxLength="20"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_cid"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etCid"
+                        android:inputType="numberDecimal|textNoSuggestions"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_lac"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etLac"
+                        android:inputType="numberDecimal|textNoSuggestions"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbSubscriber" />
+
+                    <TextView
+                        android:text="@string/settings_subscriber"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etSubscriber"
+                        android:inputType="numberDecimal|textNoSuggestions"
+                        android:maxLength="15"
+                        android:singleLine="true" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <CheckBox android:id="@+id/cbSSID" />
+
+                    <TextView
+                        android:text="@string/settings_ssid"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etSSID"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true" />
+                </TableRow>
+
+                <TableRow style="@style/PreferenceLine" >
+
+                    <View />
+
+                    <TextView
+                        android:text="@string/settings_ua"
+                        android:textIsSelectable="false" />
+
+                    <EditText
+                        android:id="@+id/etUa"
+                        android:hint="Mozilla/5.0 (Linux; U; Android; en-us) AppleWebKit/999+ (KHTML, like Gecko) Safari/999.9"
+                        android:inputType="text|textNoSuggestions"
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+                </TableRow>
+ -->                
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
