@@ -1,6 +1,6 @@
 #Fake Device Data
-Xposed module to fake your device data for selected app.
-This app use those library.  thanks to @afollestad and @futuresimple  
+Xposed module to fake your device data for selected app.  
+This app use those library. Thanks to @afollestad and @futuresimple  
 https://github.com/afollestad/material-dialogs  
 https://github.com/futuresimple/android-floating-action-button  
 
