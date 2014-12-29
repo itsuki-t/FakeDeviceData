@@ -10,5 +10,8 @@ https://github.com/futuresimple/android-floating-action-button
 3. Reboot the phone
 
 ## Change log:
+* Ver 0.2
+ - Show progress dialog while app loading.
+ 
 * Ver 0.1
  - Project release.
