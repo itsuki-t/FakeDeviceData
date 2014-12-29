@@ -28,16 +28,16 @@ import android.widget.Toast;
 import android.support.v7.app.ActionBarActivity;
 
 public class MainActivity extends ActionBarActivity {
-	class PInfo {
+	class AppInfo {
 		private String appname = "";
 		private String pname = "";
 	}
 
 	SharedPreferences pref;  
-	ListView app_list;
-	ArrayList<PInfo> pinfos;
-	PInfo pinfo;
-	private AsyncTask<Void, Void, ArrayList<PInfo>> mAsyncTask;
+	ListView appList;
+	ArrayList<AppInfo> pinfos;
+	AppInfo pinfo;
+	private AsyncTask<Void, Void, ArrayList<AppInfo>> mAsyncTask;
 	private ProgressDialog mProgressDialog;
 	
 	@Override
@@ -57,8 +57,7 @@ public class MainActivity extends ActionBarActivity {
 		actionReset.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				selectAll(view);
-				invert(view);
+				deselectAll(view);
 				menu.collapse();
 				Toast.makeText(getApplicationContext(), R.string.reset_message, Toast.LENGTH_LONG).show();
 			}
@@ -74,84 +73,59 @@ public class MainActivity extends ActionBarActivity {
 		});
 
 		pref = getSharedPreferences("pref", Context.MODE_WORLD_READABLE);
-		app_list = (ListView) findViewById(R.id.appList);
+		appList = (ListView) findViewById(R.id.appList);
 		setAppList();
 }
-
-	public ArrayList<PInfo> getInstalledApps(boolean getSysPackages){
-		ArrayList<PInfo> res = new ArrayList<PInfo>();        
-		List<PackageInfo> packs = getPackageManager().getInstalledPackages(0);
-		for (int i = 0; i < packs.size(); i++){
-			PackageInfo p = packs.get(i);
-			if ((!getSysPackages) && (p.versionName == null)){
-				continue;
-			}
-			PInfo newInfo = new PInfo();
-			newInfo.appname = p.applicationInfo.loadLabel(getPackageManager()).toString();
-			newInfo.pname = p.packageName;
-			res.add(newInfo);
-		}
-		return res;
-	}
 
 	public void save(View v){
 		Editor editor = pref.edit();
 		for (int i = 0; i < pinfos.size(); i++){
-			editor.putBoolean(pinfos.get(i).pname, app_list.isItemChecked(i));
+			editor.putBoolean(pinfos.get(i).pname, appList.isItemChecked(i));
 		}
 		editor.apply();
 		Toast.makeText(this, R.string.save_message, Toast.LENGTH_LONG).show();
 		finish();
 	}
 
-	public void invert(View v){
-		for (int i = 0; i < pinfos.size(); i++){
-			app_list.setItemChecked(i, !app_list.isItemChecked(i));
-		}
-	}
-
 	public void selectAll(View v){
 		for (int i = 0; i < pinfos.size(); i++)      
-			app_list.setItemChecked(i, true);
+			appList.setItemChecked(i, true);
+	}
+
+	public void deselectAll(View v){
+		for (int i = 0; i < pinfos.size(); i++)      
+			appList.setItemChecked(i, false);
 	}
 
 	public void load(){
 		for (int i = 0; i < pinfos.size(); i++){
-			app_list.setItemChecked(i, pref.getBoolean(pinfos.get(i).pname, false));
+			appList.setItemChecked(i, pref.getBoolean(pinfos.get(i).pname, false));
 		}
-	}
-
-	public void appExit(){
-		finish();
 	}
 
 	@Override
 	public void onBackPressed(){
-		exitPrompt();
-	}
-
-	public void exitPrompt(){
 		new MaterialDialog.Builder(this)
-        .title(R.string.save_prompt_title)
-        .content(R.string.save_prompt_message)
-        .positiveText(R.string.save_prompt_positive)
-        .positiveColorRes(R.color.bluegrey500)
-        .negativeText(R.string.save_prompt_negative)
-        .negativeColorRes(R.color.bluegrey500)
-        .callback(new Callback() {
-            @Override
-            public void onPositive(MaterialDialog dialog) {
-            }
-            @Override
-            public void onNegative(MaterialDialog dialog) {
-        		finish();
-            }
-        })
-        .build().show();
+		.title(R.string.save_prompt_title)
+		.content(R.string.save_prompt_message)
+		.positiveText(R.string.save_prompt_positive)
+		.positiveColorRes(R.color.bluegrey500)
+		.negativeText(R.string.save_prompt_negative)
+		.negativeColorRes(R.color.bluegrey500)
+		.callback(new Callback() {
+			@Override
+			public void onPositive(MaterialDialog dialog) {
+			}
+			@Override
+			public void onNegative(MaterialDialog dialog) {
+				finish();
+			}
+		})
+		.build().show();
 	}
 
 	private void setAppList(){
-		mAsyncTask = new AsyncTask<Void,Void,ArrayList<PInfo>>() {
+		mAsyncTask = new AsyncTask<Void,Void,ArrayList<AppInfo>>() {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -159,15 +133,15 @@ public class MainActivity extends ActionBarActivity {
             }
             
             @Override
-            protected ArrayList<PInfo> doInBackground(Void... arg0) {
-            	ArrayList<PInfo> res = new ArrayList<PInfo>();        
+            protected ArrayList<AppInfo> doInBackground(Void... arg0) {
+            	ArrayList<AppInfo> res = new ArrayList<AppInfo>();        
             	List<PackageInfo> packs = getPackageManager().getInstalledPackages(0);
             	for (int i = 0; i < packs.size(); i++){
             		PackageInfo p = packs.get(i);
             		if (p.versionName == null){
             			continue;
             		}
-            		PInfo newInfo = new PInfo();
+            		AppInfo newInfo = new AppInfo();
             		newInfo.appname = p.applicationInfo.loadLabel(getPackageManager()).toString();
             		newInfo.pname = p.packageName;
             		res.add(newInfo);
@@ -181,12 +155,12 @@ public class MainActivity extends ActionBarActivity {
             }
             
             @Override
-            protected void onPostExecute(ArrayList<PInfo> result) {
+            protected void onPostExecute(ArrayList<AppInfo> result) {
                 dismissProgressDialog();
                 pinfos = result;
-        		Collections.sort(pinfos, new Comparator<PInfo>(){
+        		Collections.sort(pinfos, new Comparator<AppInfo>(){
         			@Override
-        			public int compare(PInfo lhs, PInfo rhs){
+        			public int compare(AppInfo lhs, AppInfo rhs){
         				return lhs.appname.compareTo(rhs.appname);
         			}
         		});
@@ -201,9 +175,9 @@ public class MainActivity extends ActionBarActivity {
         				MainActivity.this, 
         				android.R.layout.simple_list_item_multiple_choice,
         				installed_apps);
-        		app_list.setAdapter(adapter);
+        		appList.setAdapter(adapter);
 
-        		app_list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+        		appList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
         		load();
             }

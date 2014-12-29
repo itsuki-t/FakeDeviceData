@@ -7,17 +7,9 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 import de.robv.android.xposed.XposedBridge;
 
 public class FakeDeviceData implements IXposedHookLoadPackage {
-	private boolean DEBUG_MODE = true;
+	private boolean DEBUG_MODE = false;
 	private XSharedPreferences pref;
 	private LoadPackageParam lpparam;
-
-	public boolean hack_enabled(){
-		boolean app_enabled = false;
-		if(lpparam != null){
-			app_enabled = pref.getBoolean(lpparam.packageName, false);
-		}
-		return app_enabled;
-	}
 
 	@Override
 	public void handleLoadPackage(final LoadPackageParam lpp) throws Throwable {
@@ -35,7 +27,7 @@ public class FakeDeviceData implements IXposedHookLoadPackage {
 			XposedBridge.log("couldn't hook method " + "onResume");
 		}
 
-		if (hack_enabled()){
+		if (pref.getBoolean(lpparam.packageName, false)){
 			Class<?> classBuild = XposedHelpers.findClass("android.os.Build", lpp.classLoader);
 			if(pref.getBoolean("fake_board_key", false) && !(pref.getString("fake_board_value", "").equalsIgnoreCase(""))){
 				if(DEBUG_MODE) XposedBridge.log("setStaticObjectField:BOARD="+pref.getString("fake_board_value", ""));
