@@ -9,6 +9,9 @@ https://github.com/futuresimple/android-floating-action-button
 2. Run Xposed Installer and enable the module "Fake Device Data"
 3. Reboot the phone
 
+## Features:
+* fake android.os.build data (e.g. PRODUCT) for selected app.
+
 ## Change log:
 * Ver 0.2
  - Show progress dialog while app loading.
