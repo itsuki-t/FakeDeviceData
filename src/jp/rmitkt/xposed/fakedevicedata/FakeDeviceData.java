@@ -13,12 +13,10 @@ public class FakeDeviceData implements IXposedHookLoadPackage {
 
 	public boolean hack_enabled(){
 		boolean app_enabled = false;
-		boolean master_switch = pref.getBoolean("master", false);
 		if(lpparam != null){
 			app_enabled = pref.getBoolean(lpparam.packageName, false);
 		}
-
-		return (master_switch && app_enabled);
+		return app_enabled;
 	}
 
 	@Override

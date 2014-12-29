@@ -10,17 +10,20 @@ import com.afollestad.materialdialogs.MaterialDialog.Callback;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.Toast;
 import android.support.v7.app.ActionBarActivity;
 
@@ -31,11 +34,12 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	SharedPreferences pref;  
-	ListView app_list;		//listview with checkboxes which will contain apps
-	Switch masterSwitch;
-
-	ArrayList<PInfo> pinfos;	//PInfo object for each app
-
+	ListView app_list;
+	ArrayList<PInfo> pinfos;
+	PInfo pinfo;
+	private AsyncTask<Void, Void, ArrayList<PInfo>> mAsyncTask;
+	private ProgressDialog mProgressDialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -53,10 +57,8 @@ public class MainActivity extends ActionBarActivity {
 		actionReset.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-//				Toast.makeText(getApplicationContext(), "actionReset", Toast.LENGTH_LONG).show();
 				selectAll(view);
 				invert(view);
-//				save(view);
 				menu.collapse();
 				Toast.makeText(getApplicationContext(), R.string.reset_message, Toast.LENGTH_LONG).show();
 			}
@@ -73,31 +75,7 @@ public class MainActivity extends ActionBarActivity {
 
 		pref = getSharedPreferences("pref", Context.MODE_WORLD_READABLE);
 		app_list = (ListView) findViewById(R.id.appList);
-
-		pinfos = getInstalledApps(true);
-		//sort the pinfo objects by name
-		Collections.sort(pinfos, new Comparator<PInfo>(){
-			@Override
-			public int compare(PInfo lhs, PInfo rhs){
-				return lhs.appname.compareTo(rhs.appname);
-			}
-		});
-
-		//add apps to installed_apps list
-		ArrayList<String> installed_apps = new ArrayList<String>();
-		for (int i = 0; i < pinfos.size(); i++){
-			installed_apps.add(pinfos.get(i).appname);
-		}
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-				this, 
-				android.R.layout.simple_list_item_multiple_choice,
-				installed_apps);
-		app_list.setAdapter(adapter);
-
-		app_list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-
-		load();
+		setAppList();
 }
 
 	public ArrayList<PInfo> getInstalledApps(boolean getSysPackages){
@@ -121,7 +99,6 @@ public class MainActivity extends ActionBarActivity {
 		for (int i = 0; i < pinfos.size(); i++){
 			editor.putBoolean(pinfos.get(i).pname, app_list.isItemChecked(i));
 		}
-		editor.putBoolean("master", this.masterSwitch.isChecked());
 		editor.apply();
 		Toast.makeText(this, R.string.save_message, Toast.LENGTH_LONG).show();
 		finish();
@@ -138,17 +115,16 @@ public class MainActivity extends ActionBarActivity {
 			app_list.setItemChecked(i, true);
 	}
 
-	//load ticked or not from previous pref file
 	public void load(){
 		for (int i = 0; i < pinfos.size(); i++){
 			app_list.setItemChecked(i, pref.getBoolean(pinfos.get(i).pname, false));
 		}
-
-		masterSwitch = (Switch) findViewById(R.id.masterswitch);
-		masterSwitch.setChecked(pref.getBoolean("master", true));
 	}
 
-	//prompt to prevent quit without save
+	public void appExit(){
+		finish();
+	}
+
 	@Override
 	public void onBackPressed(){
 		exitPrompt();
@@ -173,4 +149,89 @@ public class MainActivity extends ActionBarActivity {
         })
         .build().show();
 	}
+
+	private void setAppList(){
+		mAsyncTask = new AsyncTask<Void,Void,ArrayList<PInfo>>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                showProgressDialog();
+            }
+            
+            @Override
+            protected ArrayList<PInfo> doInBackground(Void... arg0) {
+            	ArrayList<PInfo> res = new ArrayList<PInfo>();        
+            	List<PackageInfo> packs = getPackageManager().getInstalledPackages(0);
+            	for (int i = 0; i < packs.size(); i++){
+            		PackageInfo p = packs.get(i);
+            		if (p.versionName == null){
+            			continue;
+            		}
+            		PInfo newInfo = new PInfo();
+            		newInfo.appname = p.applicationInfo.loadLabel(getPackageManager()).toString();
+            		newInfo.pname = p.packageName;
+            		res.add(newInfo);
+            	}
+            	return res;
+            }
+        		
+            @Override
+            protected void onCancelled() {
+            	dismissProgressDialog();
+            }
+            
+            @Override
+            protected void onPostExecute(ArrayList<PInfo> result) {
+                dismissProgressDialog();
+                pinfos = result;
+        		Collections.sort(pinfos, new Comparator<PInfo>(){
+        			@Override
+        			public int compare(PInfo lhs, PInfo rhs){
+        				return lhs.appname.compareTo(rhs.appname);
+        			}
+        		});
+
+        		//add apps to installed_apps list
+        		ArrayList<String> installed_apps = new ArrayList<String>();
+        		for (int i = 0; i < pinfos.size(); i++){
+        			installed_apps.add(pinfos.get(i).appname);
+        		}
+
+        		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        				MainActivity.this, 
+        				android.R.layout.simple_list_item_multiple_choice,
+        				installed_apps);
+        		app_list.setAdapter(adapter);
+
+        		app_list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+
+        		load();
+            }
+
+            
+		}.execute();
+	}
+	
+    private void showProgressDialog() {
+        mProgressDialog = new ProgressDialog(MainActivity.this);
+    	mProgressDialog.setMessage(getString(R.string.app_loading_message));
+    	mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(true);
+        mProgressDialog.setOnCancelListener(new OnCancelListener() {
+        	@Override
+        	public void onCancel(DialogInterface dialog) {
+        		Toast.makeText(getApplicationContext(), R.string.app_loading_cancel, Toast.LENGTH_SHORT).show();
+        		finish();
+        	}
+        });
+        mProgressDialog.show();
+    }
+
+    private void dismissProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+        mProgressDialog = null;        
+    }
+
 }

@@ -5,7 +5,9 @@ xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_description">Fake your device data for selected app.</string>
 
     <!-- App select screen. -->
-    <string name="select_desc">Select apps that want to fake android.os.build</string>
+    <string name="select_desc">Select apps that you want to fake android.os.build</string>
+    <string name="app_loading_message">App loading...</string>
+    <string name="app_loading_cancel">App loading canceled!</string>
     <string name="save_prompt_title">Exit this app without save?</string>
     <string name="save_prompt_message">You haven\'t saved your settings</string>
     <string name="save_prompt_positive">Don\'t exit</string>

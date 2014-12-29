@@ -23,17 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/button1"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/masterswitch" />
-
-    <Switch
-        android:id="@id/masterswitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/textView1"
-        android:checked="true"
-        android:text="Master Switch" />
+        android:layout_below="@id/textView1" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/multiple_actions"
