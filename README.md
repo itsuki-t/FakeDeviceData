@@ -10,7 +10,11 @@ https://github.com/futuresimple/android-floating-action-button
 3. Reboot the phone
 
 ## Features:
-* fake android.os.build data (e.g. PRODUCT) for selected app.
+* replace android.os.build data (e.g. PRODUCT) with you edit text for selected app.
+
+## Caution:
+You get a bootloop when you enable fake for system app or some normal app.  
+If you don't know how to recovery from bootloop, shouldn't use this module. 
 
 ## Change log:
 * Ver 0.2
