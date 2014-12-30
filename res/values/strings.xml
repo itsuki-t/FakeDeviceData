@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Fake Device Data</string>
-    <string name="app_description">Fake your device data for selected app.</string>
+    <string name="app_description">Fake your device data without rewrite build.prop only for you selected app.</string>
 
     <!-- App select screen. -->
     <string name="select_desc">Select apps that you want to fake android.os.build</string>

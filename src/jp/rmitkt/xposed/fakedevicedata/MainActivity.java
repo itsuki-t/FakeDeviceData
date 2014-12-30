@@ -35,8 +35,7 @@ public class MainActivity extends ActionBarActivity {
 
 	SharedPreferences pref;  
 	ListView appList;
-	ArrayList<AppInfo> pinfos;
-	AppInfo pinfo;
+	ArrayList<AppInfo> appinfos;
 	private AsyncTask<Void, Void, ArrayList<AppInfo>> mAsyncTask;
 	private ProgressDialog mProgressDialog;
 	
@@ -79,8 +78,8 @@ public class MainActivity extends ActionBarActivity {
 
 	public void save(View v){
 		Editor editor = pref.edit();
-		for (int i = 0; i < pinfos.size(); i++){
-			editor.putBoolean(pinfos.get(i).pname, appList.isItemChecked(i));
+		for (int i = 0; i < appinfos.size(); i++){
+			editor.putBoolean(appinfos.get(i).pname, appList.isItemChecked(i));
 		}
 		editor.apply();
 		Toast.makeText(this, R.string.save_message, Toast.LENGTH_LONG).show();
@@ -88,18 +87,18 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void selectAll(View v){
-		for (int i = 0; i < pinfos.size(); i++)      
+		for (int i = 0; i < appinfos.size(); i++)      
 			appList.setItemChecked(i, true);
 	}
 
 	public void deselectAll(View v){
-		for (int i = 0; i < pinfos.size(); i++)      
+		for (int i = 0; i < appinfos.size(); i++)      
 			appList.setItemChecked(i, false);
 	}
 
 	public void load(){
-		for (int i = 0; i < pinfos.size(); i++){
-			appList.setItemChecked(i, pref.getBoolean(pinfos.get(i).pname, false));
+		for (int i = 0; i < appinfos.size(); i++){
+			appList.setItemChecked(i, pref.getBoolean(appinfos.get(i).pname, false));
 		}
 	}
 
@@ -157,24 +156,23 @@ public class MainActivity extends ActionBarActivity {
             @Override
             protected void onPostExecute(ArrayList<AppInfo> result) {
                 dismissProgressDialog();
-                pinfos = result;
-        		Collections.sort(pinfos, new Comparator<AppInfo>(){
+                appinfos = result;
+        		Collections.sort(appinfos, new Comparator<AppInfo>(){
         			@Override
-        			public int compare(AppInfo lhs, AppInfo rhs){
-        				return lhs.appname.compareTo(rhs.appname);
+        			public int compare(AppInfo lai, AppInfo rai){
+        				return lai.appname.compareTo(rai.appname);
         			}
         		});
 
-        		//add apps to installed_apps list
-        		ArrayList<String> installed_apps = new ArrayList<String>();
-        		for (int i = 0; i < pinfos.size(); i++){
-        			installed_apps.add(pinfos.get(i).appname);
+        		ArrayList<String> apps = new ArrayList<String>();
+        		for (int i = 0; i < appinfos.size(); i++){
+        			apps.add(appinfos.get(i).appname);
         		}
 
         		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
         				MainActivity.this, 
         				android.R.layout.simple_list_item_multiple_choice,
-        				installed_apps);
+        				apps);
         		appList.setAdapter(adapter);
 
         		appList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
