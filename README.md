@@ -1,20 +1,30 @@
 #Fake Device Data
-Xposed module to fake your device data without rewrite build.prop only for you selected app.  
+Xposed module to impersonate the fields of android.os.build without rewriting the "build.prop".  
 This app use those library. Thanks to @afollestad and @futuresimple  
 https://github.com/afollestad/material-dialogs  
 https://github.com/futuresimple/android-floating-action-button  
 
-##Installation instructions:
-1. Install the module
-2. Run Xposed Installer and enable the module "Fake Device Data"
-3. Reboot the phone
+##How to use:
+1. Launch the module, check the app that you want to impersonate.
+2. Press the "PLUS" button, and then select "Fake Data Setting".
+3. Enter the data to impersonate and checked.
+   (Press back button the settings are saved.)
+4. Press the "PLUS" button, and then select "save and exit"
 
 ## Features:
-* replace android.os.build field (e.g. PRODUCT) with you edited text for selected app.
+* Impersonate your device to other devices.  
+  (By changing the Build.DEVICE and Build.PRODUCT)
+* Limit the target application to impersonate.  
+  (For example only just disguised to "Google Play")
 
 ## Caution:
-You get a bootloop when you enable fake for system app or some normal app.  
-If you don't know how to recovery from bootloop, shouldn't use this module. 
+You get a bootloop if you impersonate a system app (and some normal app).    
+
+Please don't forget to backup your ROM before using the module.  
+**If you don't know how to recovery from bootloop, should not use this module.**
+
+## License
+Licensed under the Apache License, Version 2.0 (the "License").
 
 ## Change log:
 * Ver 0.2
