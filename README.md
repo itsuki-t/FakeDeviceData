@@ -19,7 +19,6 @@ https://github.com/futuresimple/android-floating-action-button
 
 ## Caution:
 You get a bootloop if you impersonate a system app (and some normal app).    
-
 Please don't forget to backup your ROM before using the module.  
 **If you don't know how to recovery from bootloop, should not use this module.**
 
