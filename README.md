@@ -1,5 +1,5 @@
 #Fake Device Data
-Xposed module to impersonate the fields of android.os.build without rewriting the "build.prop".  
+Xposed module to change the fields of android.os.build without rewriting the "build.prop".  
 This app use those library. Thanks to @afollestad and @futuresimple  
 https://github.com/afollestad/material-dialogs  
 https://github.com/futuresimple/android-floating-action-button  
@@ -12,10 +12,10 @@ https://github.com/futuresimple/android-floating-action-button
 4. Press the "PLUS" button, and then select "save and exit"
 
 ## What you can do:
-* Impersonate your device to other devices.  
+* Impersonate your device to other device.  
   (By changing the Build.DEVICE and Build.PRODUCT)
 * Limit the target application to impersonate.  
-  (For example only just disguised to "Google Play")
+  (e.g. "Google Play" only.)
 
 ## Caution:
 You get a bootloop if you impersonate a system app (and some normal app).    
